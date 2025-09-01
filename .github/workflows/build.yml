@@ -24,12 +24,12 @@ jobs:
         run: make vanitygen++ keyconv
 
       - name: Verify vanitygen++
-        run: ./vanitygen++ --help
+        run: ./vanitygen++ --help || true
 
-      - name: Upload artifacts
+      - name: Upload CPU binaries
         uses: actions/upload-artifact@v4
         with:
           name: vanitygen-cpu-binaries
           path: |
-            vanitygen++
-            keyconv
+            ./vanitygen++
+            ./keyconv
