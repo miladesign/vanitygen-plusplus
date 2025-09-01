@@ -1,4 +1,4 @@
-name: Build Vanitygen++ (Linux)
+name: Build Vanitygen++ (Linux, CPU only)
 
 on:
   push:
@@ -20,8 +20,8 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential libssl-dev libpcre3-dev libcurl4-openssl-dev
 
-      - name: Build project (all binaries)
-        run: make all
+      - name: Build project (CPU binaries only)
+        run: make vanitygen++ keyconv
 
       - name: Verify vanitygen++
         run: ./vanitygen++ --help
@@ -29,9 +29,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: vanitygen-binaries
+          name: vanitygen-cpu-binaries
           path: |
             vanitygen++
             keyconv
-            oclvanitygen++
-            oclvanityminer
